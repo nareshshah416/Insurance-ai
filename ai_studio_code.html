@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Naresh Shah Insurance AI</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; -webkit-tap-highlight-color: transparent; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 pb-24">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-slate-900 text-white shadow-md border-b border-slate-800">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center font-bold text-lg text-white shadow">
+          NS
+        </div>
+        <div>
+          <h1 class="text-base font-bold tracking-tight leading-none text-white">Naresh Shah Insurance AI</h1>
+          <p class="text-[11px] text-blue-400 font-medium">बीमा सलाहकार • +91 9930875279</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-1.5">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          DEMO MODE
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Mobile Container -->
+  <main class="max-w-md mx-auto px-4 pt-3 pb-6">
+
+    <!-- Compliance Banner -->
+    <div class="mb-4 bg-amber-50 border-l-4 border-amber-500 p-2.5 rounded-r shadow-xs text-xs text-amber-900 flex items-start gap-2">
+      <svg class="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <div>
+        <span class="font-bold">नियम सूचना:</span> यह सिस्टम कभी भी मनगढ़ंत प्रीमियम या 100% क्लेम पास होने की गारंटी नहीं देता। सही प्रीमियम RC और पिछली पॉलिसी के आधार पर ही तय होता है।
+      </div>
+    </div>
+
+    <!-- ================= VIEW 1: HOME DASHBOARD ================= -->
+    <section id="view-home" class="space-y-4">
+      <!-- Quick Action Cards -->
+      <div class="grid grid-cols-2 gap-3">
+        <div onclick="switchTab('ai')" class="bg-white p-3.5 rounded-xl shadow-xs border border-slate-200 active:scale-95 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold mb-2">🤖</div>
+          <h3 class="font-bold text-sm text-slate-800">Insurance AI</h3>
+          <p class="text-[11px] text-slate-500 mt-0.5">कवरेज, कागजात और तुरंत जवाब</p>
+        </div>
+
+        <div onclick="switchTab('customers')" class="bg-white p-3.5 rounded-xl shadow-xs border border-slate-200 active:scale-95 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-2">💬</div>
+          <h3 class="font-bold text-sm text-slate-800">WhatsApp Leads</h3>
+          <p class="text-[11px] text-slate-500 mt-0.5">ग्राहक फॉलो-अप व ड्राफ्ट</p>
+        </div>
+
+        <div onclick="switchTab('reviews')" class="bg-white p-3.5 rounded-xl shadow-xs border border-slate-200 active:scale-95 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold mb-2">⭐</div>
+          <h3 class="font-bold text-sm text-slate-800">Google Reviews</h3>
+          <p class="text-[11px] text-slate-500 mt-0.5">रिव्यू जवाब और शिकायत फिल्टर</p>
+        </div>
+
+        <div onclick="switchTab('ads')" class="bg-white p-3.5 rounded-xl shadow-xs border border-slate-200 active:scale-95 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold mb-2">📢</div>
+          <h3 class="font-bold text-sm text-slate-800">Social Ads</h3>
+          <p class="text-[11px] text-slate-500 mt-0.5">फेसबुक व व्हाट्सएप पोस्ट्स</p>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="bg-slate-900 text-white rounded-xl p-4 shadow-sm">
+        <h4 class="text-xs uppercase font-semibold text-slate-400 tracking-wider">आज का संक्षेप (Daily Overview)</h4>
+        <div class="grid grid-cols-3 gap-2 mt-3 text-center">
+          <div class="bg-slate-800/80 p-2 rounded-lg">
+            <span class="block text-xl font-bold text-emerald-400" id="stat-leads">4</span>
+            <span class="text-[10px] text-slate-300">एक्टिव लीड्स</span>
+          </div>
+          <div class="bg-slate-800/80 p-2 rounded-lg">
+            <span class="block text-xl font-bold text-amber-400" id="stat-followups">2</span>
+            <span class="text-[10px] text-slate-300">फॉलो-अप बाकी</span>
+          </div>
+          <div class="bg-slate-800/80 p-2 rounded-lg">
+            <span class="block text-xl font-bold text-blue-400" id="stat-reviews">1</span>
+            <span class="text-[10px] text-slate-300">रिव्यू पेंडिंग</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Direct WhatsApp Link Card -->
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-center justify-between">
+        <div>
+          <h4 class="text-xs font-bold text-emerald-950">नरेश शाह डायरेक्ट व्हाट्सएप लिंक</h4>
+          <p class="text-[11px] text-emerald-800">wa.me/919930875279</p>
+        </div>
+        <a href="https://wa.me/919930875279" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg shadow-xs flex items-center gap-1">
+          चैट खोलें ↗
+        </a>
+      </div>
+
+      <!-- Setup Checklist Teaser -->
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-xs font-bold text-slate-700">सिस्टम कनेक्शन स्थिति</h4>
+          <button onclick="switchTab('settings')" class="text-[11px] text-blue-600 font-semibold underline">चेकलिस्ट देखें</button>
+        </div>
+        <div class="space-y-1.5 text-xs">
+          <div class="flex items-center justify-between text-slate-600">
+            <span>WhatsApp Cloud API:</span>
+            <span class="text-amber-600 font-medium">अनकनेक्टेड (मैनुअल मोड)</span>
+          </div>
+          <div class="flex items-center justify-between text-slate-600">
+            <span>Google Business Profile:</span>
+            <span class="text-amber-600 font-medium">डेमो मोड (सत्यापन आवश्यक)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: INSURANCE AI ================= -->
+    <section id="view-ai" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xl">🛡️</span>
+          <div>
+            <h2 class="text-sm font-bold text-slate-800">बीमा AI ज्ञान केंद्र (Insurance Knowledge)</h2>
+            <p class="text-[11px] text-slate-500">कार, बाइक, ऑटो, कमर्शियल, हेल्थ और टर्म बीमा की जानकारी</p>
+          </div>
+        </div>
+
+        <!-- Category Select -->
+        <label class="block text-xs font-semibold text-slate-600 mt-3 mb-1">बीमा का प्रकार चुनें:</label>
+        <select id="ai-category" onchange="renderAiTopics()" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+          <option value="auto">🛺 ऑटो रिक्शा (Auto-Rickshaw Insurance)</option>
+          <option value="bike">🛵 दो-पहिया / बाइक (Two-Wheeler Insurance)</option>
+          <option value="car">🚗 प्राइवेट कार (Private Car Insurance)</option>
+          <option value="commercial">🚛 कमर्शियल गाड़ी / टैक्सी / ट्रक (Commercial Vehicle)</option>
+          <option value="health">🏥 स्वास्थ्य बीमा (Health Insurance / Mediclaim)</option>
+          <option value="term">☂️ टर्म लाइफ बीमा (Term Life Insurance)</option>
+        </select>
+
+        <!-- Topic Tabs -->
+        <div class="flex gap-1.5 mt-3 overflow-x-auto hide-scrollbar pb-1 text-xs">
+          <button onclick="setAiTopic('coverage')" id="tab-coverage" class="ai-tab-btn px-3 py-1.5 rounded-lg bg-blue-600 text-white font-medium shrink-0">कवरेज क्या है?</button>
+          <button onclick="setAiTopic('renewal')" id="tab-renewal" class="ai-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-medium shrink-0">रिन्यूअल प्रक्रिया</button>
+          <button onclick="setAiTopic('documents')" id="tab-documents" class="ai-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-medium shrink-0">जरूरी कागजात</button>
+          <button onclick="setAiTopic('faq')" id="tab-faq" class="ai-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-medium shrink-0">आम सवाल (FAQ)</button>
+        </div>
+
+        <!-- AI Output Box -->
+        <div id="ai-content-box" class="mt-3.5 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700 leading-relaxed whitespace-pre-line">
+          लोड हो रहा है...
+        </div>
+
+        <button onclick="copyAiText()" class="mt-3 w-full py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5">
+          <span>📋</span> जानकारी कॉपी करें
+        </button>
+      </div>
+
+      <!-- Quick Reply Generator for Customer Inquiries -->
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <h3 class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+          <span>⚡</span> कस्टमर सवाल का AI जवाब बनाएं
+        </h3>
+        <p class="text-[11px] text-slate-500 mt-0.5">ग्राहक के सवाल का तुरंत प्रोफेशनल जवाब तैयार करें</p>
+
+        <div class="mt-3 space-y-2">
+          <input id="ai-cust-name" type="text" placeholder="ग्राहक का नाम (उदा. राहुल भाई)" class="w-full text-xs p-2 bg-slate-50 border border-slate-300 rounded-lg" />
+          <select id="ai-query-type" class="w-full text-xs p-2 bg-slate-50 border border-slate-300 rounded-lg">
+            <option value="expired">पॉलिसी खत्म हो गई है, रिन्यूअल कैसे कराएं?</option>
+            <option value="auto_rate">ऑटो रिक्शा थर्ड पार्टी बीमा के लिए क्या लगेगा?</option>
+            <option value="claim_process">दुर्घटना हो गई है, क्लेम कैसे मिलेगा?</option>
+            <option value="health_waiting">हेल्थ बीमा में पुरानी बीमारी कब कवर होगी?</option>
+            <option value="term_documents">टर्म बीमा के लिए मेडिकल टेस्ट अनिवार्य है?</option>
+          </select>
+          <button onclick="generateAiCustomerReply()" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-xs">
+            जवाब ड्राफ्ट तैयार करें
+          </button>
+        </div>
+
+        <div id="ai-reply-output-container" class="hidden mt-3 pt-3 border-t border-slate-200">
+          <label class="block text-[11px] font-semibold text-slate-600 mb-1">तैयार किया गया ड्राफ्ट (समीक्षा करें):</label>
+          <textarea id="ai-reply-draft" rows="4" class="w-full text-xs p-2 bg-slate-50 border border-slate-300 rounded-lg font-sans"></textarea>
+          <div class="flex gap-2 mt-2">
+            <button onclick="copyGeneratedReply()" class="flex-1 py-1.5 bg-slate-200 text-slate-800 text-xs font-medium rounded-lg">ड्राफ्ट कॉपी करें</button>
+            <button onclick="shareGeneratedReplyToCustomer()" class="flex-1 py-1.5 bg-emerald-600 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1">
+              WhatsApp पर भेजें ↗
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: WHATSAPP CUSTOMER MANAGEMENT ================= -->
+    <section id="view-customers" class="hidden space-y-4">
+      <!-- Top Actions -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-sm font-bold text-slate-800">ग्राहक व फॉलो-अप (Leads)</h2>
+          <p class="text-[11px] text-slate-500">सभी मैसेज नरेश शाह की स्वीकृति के बाद भेजे जाते हैं</p>
+        </div>
+        <button onclick="openLeadModal()" class="px-3 py-1.5 bg-blue-600 text-white text-xs font-semibold rounded-lg shadow-xs flex items-center gap-1">
+          + नई लीड
+        </button>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="flex gap-2">
+        <input id="lead-search" oninput="filterLeads()" type="text" placeholder="नाम या मोबाइल खोजें..." class="flex-1 text-xs p-2 bg-white border border-slate-300 rounded-lg shadow-xs" />
+        <select id="lead-filter-status" onchange="filterLeads()" class="text-xs p-2 bg-white border border-slate-300 rounded-lg shadow-xs">
+          <option value="all">सभी स्टेटस</option>
+          <option value="new">नई लीड</option>
+          <option value="followup">फॉलो-अप</option>
+          <option value="closed">पॉलिसी जारी</option>
+        </select>
+      </div>
+
+      <!-- Leads Container -->
+      <div id="leads-container" class="space-y-3">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: GOOGLE REVIEWS ================= -->
+    <section id="view-reviews" class="hidden space-y-4">
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-bold text-slate-800">Google Business Profile समीक्षाएं</h2>
+            <p class="text-[11px] text-slate-500">डेमो मोड: केवल स्वीकृत जवाब ही आगे भेजे जाते हैं</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-600 font-medium">Demo Data</span>
+        </div>
+
+        <!-- Auto Reply Setting -->
+        <div class="mt-3 p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between">
+          <div class="pr-2">
+            <span class="text-xs font-bold text-slate-800 block">4 & 5 स्टार के लिए ऑटो-ड्राफ्ट</span>
+            <span class="text-[10px] text-slate-500">सकारात्मक रिव्यू के लिए विनम्र धन्यवाद ड्राफ्ट बनाएं</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-autoreply" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Complaint Flag Notice -->
+      <div class="p-2.5 bg-rose-50 border-l-4 border-rose-500 rounded-r text-xs text-rose-900">
+        <span class="font-bold">सख्त नियम:</span> 1-स्टार या 2-स्टार शिकायत का जवाब कभी खुद पोस्ट नहीं होगा। इसके लिए मालिक (नरेश शाह) की सीधी स्वीकृति आवश्यक है।
+      </div>
+
+      <!-- Reviews Queue -->
+      <div id="reviews-container" class="space-y-3">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: SOCIAL POSTS & ADS ================= -->
+    <section id="view-ads" class="hidden space-y-4">
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+        <h2 class="text-sm font-bold text-slate-800">विज्ञापन और सोशल मीडिया पोस्ट्स</h2>
+        <p class="text-[11px] text-slate-500">फेसबुक और व्हाट्सएप स्टेटस के लिए तैयार हिंदी/हिंग्लिश पोस्ट्स</p>
+
+        <!-- Category Picker -->
+        <div class="mt-3 grid grid-cols-3 gap-1.5 text-xs">
+          <button onclick="renderAdTemplate('auto')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 font-medium text-center">🛺 ऑटो रिक्शा</button>
+          <button onclick="renderAdTemplate('commercial')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-medium text-center">🚛 कमर्शियल</button>
+          <button onclick="renderAdTemplate('bike')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-medium text-center">🛵 बाइक / कार</button>
+          <button onclick="renderAdTemplate('health')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-medium text-center">🏥 स्वास्थ्य बीमा</button>
+          <button onclick="renderAdTemplate('term')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-medium text-center">☂️ टर्म लाइफ</button>
+          <button onclick="renderAdTemplate('renewal')" class="ad-cat-btn py-1.5 px-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-medium text-center">⏱️ तुरंत रिन्यू</button>
+        </div>
+      </div>
+
+      <!-- Ad Editor Box -->
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-700">पोस्ट कंटेंट (एडिट करने योग्य):</span>
+          <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded">व्हाट्सएप लिंक शामिल</span>
+        </div>
+
+        <textarea id="ad-content-box" rows="9" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg leading-relaxed font-sans text-slate-800"></textarea>
+
+        <!-- Owner Approval Check -->
+        <label class="flex items-start gap-2 text-xs text-slate-700 cursor-pointer pt-1">
+          <input type="checkbox" id="ad-approval-check" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500" />
+          <span>मैं (नरेश शाह) पुष्टि करता हूँ कि इस विज्ञापन की भाषा और जानकारी पूरी तरह सही है।</span>
+        </label>
+
+        <div class="flex gap-2 pt-1">
+          <button onclick="copyAdContent()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+            📋 पोस्ट कॉपी करें
+          </button>
+          <button onclick="shareAdToWhatsApp()" class="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1">
+            WhatsApp पर शेयर ↗
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 6: SETTINGS & SETUP CHECKLIST ================= -->
+    <section id="view-settings" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <h2 class="text-sm font-bold text-slate-800">सिस्टम एकीकरण चेकलिस्ट (Setup Checklist)</h2>
+        <p class="text-[11px] text-slate-500">सुरक्षा नियम: कोई भी API Key कभी भी फ्रंटएंड कोड में नहीं रखी जाती।</p>
+
+        <div class="mt-4 space-y-3">
+          <!-- Item 1 -->
+          <div class="p-3 rounded-lg border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">1. WhatsApp Business Platform (Cloud API)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold">मैनुअल मोड सक्रिय</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-tight">
+              वर्तमान में सभी संदेश सीधे <code>wa.me/919930875279</code> के आधिकारिक लिंक से सुरक्षित भेजे जाते हैं। ऑफिशियल ऑटोमेशन के लिए Meta Developer Portal से Cloud API ऑथराइजेशन आवश्यक है।
+            </p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-3 rounded-lg border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">2. Google Business Profile API</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold">डेमो मोड</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-tight">
+              सीधे Google पर उत्तर पोस्ट करने के लिए Google Cloud Console में OAuth 2.0 और Google Business Profile API एक्सेस सेटअप करना होगा।
+            </p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-3 rounded-lg border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">3. Android मोबाइल लोकल डेटा स्टोरेज</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">सक्रिय (Active)</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-tight">
+              आपकी लीड्स और सेटिंग्स आपके फोन के ब्राउज़र में 100% सुरक्षित और ऑफलाइन काम करती हैं।
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Backup & Reset -->
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs space-y-3">
+        <h3 class="text-xs font-bold text-slate-800">डेटा बैकअप (Data Backup)</h3>
+        <p class="text-[11px] text-slate-500">आप अपनी लीड्स का डेटा सुरक्षित डाउनलोड कर सकते हैं।</p>
+        <div class="flex gap-2">
+          <button onclick="exportData()" class="flex-1 py-2 bg-slate-100 border border-slate-300 text-slate-700 text-xs font-medium rounded-lg">
+            📥 डेटा डाउनलोड (Backup)
+          </button>
+          <button onclick="resetDefaultData()" class="flex-1 py-2 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium rounded-lg">
+            🔄 डिफॉल्ट रीसेट करें
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= MODAL: ADD / EDIT LEAD ================= -->
+  <div id="modal-lead" class="fixed inset-0 z-50 bg-black/60 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-4 space-y-3 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h3 class="text-sm font-bold text-slate-800" id="modal-title">नई बीमा लीड जोड़ें</h3>
+        <button onclick="closeLeadModal()" class="text-slate-400 text-xl font-bold p-1">&times;</button>
+      </div>
+
+      <div class="space-y-2.5 text-xs">
+        <div>
+          <label class="block font-medium text-slate-600 mb-0.5">ग्राहक का नाम *</label>
+          <input type="text" id="form-name" placeholder="उदा. रमेश पाटिल" class="w-full p-2 border border-slate-300 rounded-lg" />
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-0.5">मोबाइल नंबर *</label>
+          <input type="tel" id="form-phone" placeholder="उदा. 9876543210" class="w-full p-2 border border-slate-300 rounded-lg" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium text-slate-600 mb-0.5">बीमा प्रकार</label>
+            <select id="form-type" class="w-full p-2 border border-slate-300 rounded-lg">
+              <option value="🛺 ऑटो रिक्शा">🛺 ऑटो रिक्शा</option>
+              <option value="🛵 बाइक / दो-पहिया">🛵 दो-पहिया / बाइक</option>
+              <option value="🚗 कार बीमा">🚗 कार बीमा</option>
+              <option value="🚛 कमर्शियल गाड़ी">🚛 कमर्शियल गाड़ी</option>
+              <option value="🏥 स्वास्थ्य बीमा">🏥 स्वास्थ्य बीमा</option>
+              <option value="☂️ टर्म लाइफ">☂️ टर्म लाइफ</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-slate-600 mb-0.5">स्टेटस</label>
+            <select id="form-status" class="w-full p-2 border border-slate-300 rounded-lg">
+              <option value="new">नई लीड (New)</option>
+              <option value="followup">फॉलो-अप (Follow-up)</option>
+              <option value="closed">पॉलिसी जारी (Issued)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-0.5">गाड़ी नंबर / विवरण</label>
+          <input type="text" id="form-vehicle" placeholder="उदा. MH-02-AB-1234" class="w-full p-2 border border-slate-300 rounded-lg uppercase" />
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-0.5">फॉलो-अप तारीख</label>
+          <input type="date" id="form-date" class="w-full p-2 border border-slate-300 rounded-lg" />
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2 border-t">
+        <button onclick="closeLeadModal()" class="flex-1 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg">रद्द करें</button>
+        <button onclick="saveLead()" class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg">लीड सेव करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: MESSAGE DRAFT & SEND ================= -->
+  <div id="modal-msg" class="fixed inset-0 z-50 bg-black/60 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-4 space-y-3">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h3 class="text-sm font-bold text-slate-800">WhatsApp ड्राफ्ट समीक्षा (Owner Approval)</h3>
+        <button onclick="closeMsgModal()" class="text-slate-400 text-xl font-bold p-1">&times;</button>
+      </div>
+
+      <div class="text-xs space-y-2">
+        <div class="flex justify-between items-center bg-slate-50 p-2 rounded-lg border">
+          <span class="text-slate-500">ग्राहक: <strong id="msg-cust-name" class="text-slate-800">-</strong></span>
+          <span class="text-slate-500">फोन: <strong id="msg-cust-phone" class="text-slate-800">-</strong></span>
+        </div>
+
+        <label class="block font-semibold text-slate-700">संदेश टेम्पलेट चुनें:</label>
+        <select id="msg-template-select" onchange="applyLeadMsgTemplate()" class="w-full p-2 border border-slate-300 rounded-lg">
+          <option value="renewal_reminder">पॉलिसी रिन्यूअल रिमाइंडर (Renewal Reminder)</option>
+          <option value="doc_request">कागजात मंगाने हेतु (RC & Old Policy Copy)</option>
+          <option value="quote_ready">कोटेशन तैयार है (Discuss Best Options)</option>
+          <option value="thanks">पॉलिसी जारी होने पर धन्यवाद (Welcome & Policy Sent)</option>
+        </select>
+
+        <label class="block font-semibold text-slate-700">संदेश सामग्री (Message Draft):</label>
+        <textarea id="msg-text" rows="5" class="w-full p-2 border border-slate-300 rounded-lg text-xs leading-relaxed"></textarea>
+
+        <!-- Mandatory Approval -->
+        <label class="flex items-start gap-2 bg-amber-50 border border-amber-200 p-2 rounded-lg text-[11px] text-amber-900 cursor-pointer">
+          <input type="checkbox" id="msg-owner-approval" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500" />
+          <span><strong>मालिक की स्वीकृति:</strong> मैं (नरेश शाह) इस संदेश को सत्यापित करता हूँ। कोई भी अनचाहा या बल्क स्पैम मैसेज नहीं भेजा जा रहा है।</span>
+        </label>
+      </div>
+
+      <div class="flex gap-2 pt-2 border-t">
+        <button onclick="closeMsgModal()" class="flex-1 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg">रद्द करें</button>
+        <button onclick="sendApprovedWhatsApp()" class="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg flex items-center justify-center gap-1 shadow-xs">
+          व्हाट्सएप पर भेजें ↗
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-lg">
+    <div class="max-w-md mx-auto grid grid-cols-5 text-center py-2 px-1">
+      <button onclick="switchTab('home')" id="nav-home" class="nav-btn text-blue-600 flex flex-col items-center">
+        <span class="text-lg">🏠</span>
+        <span class="text-[10px] font-semibold mt-0.5">होम</span>
+      </button>
+      <button onclick="switchTab('ai')" id="nav-ai" class="nav-btn text-slate-500 flex flex-col items-center">
+        <span class="text-lg">🤖</span>
+        <span class="text-[10px] font-semibold mt-0.5">बीमा AI</span>
+      </button>
+      <button onclick="switchTab('customers')" id="nav-customers" class="nav-btn text-slate-500 flex flex-col items-center">
+        <span class="text-lg">👥</span>
+        <span class="text-[10px] font-semibold mt-0.5">ग्राहक</span>
+      </button>
+      <button onclick="switchTab('reviews')" id="nav-reviews" class="nav-btn text-slate-500 flex flex-col items-center">
+        <span class="text-lg">⭐</span>
+        <span class="text-[10px] font-semibold mt-0.5">रिव्यूज</span>
+      </button>
+      <button onclick="switchTab('ads')" id="nav-ads" class="nav-btn text-slate-500 flex flex-col items-center">
+        <span class="text-lg">📢</span>
+        <span class="text-[10px] font-semibold mt-0.5">ऐड्स</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // --- 1. STATE & STORAGE INITIALIZATION ---
+    const OWNER_NAME = "Naresh Shah";
+    const OWNER_PHONE = "919930875279";
+
+    const DEFAULT_LEADS = [
+      { id: 1, name: "दिनेश यादव", phone: "9820112233", type: "🛺 ऑटो रिक्शा", vehicle: "MH-02-EQ-8812", date: "2026-11-05", status: "followup" },
+      { id: 2, name: "विकास शर्मा", phone: "9819445566", type: "🚗 कार बीमा", vehicle: "MH-01-BK-4421", date: "2026-11-08", status: "new" },
+      { id: 3, name: "संजय गुप्ता", phone: "9930554433", type: "🚛 कमर्शियल गाड़ी", vehicle: "MH-04-G-9090", date: "2026-11-02", status: "followup" },
+      { id: 4, name: "अमित सावंत", phone: "9702889900", type: "🏥 स्वास्थ्य बीमा", vehicle: "फैमिली फ्लोटर", date: "2026-11-12", status: "closed" }
+    ];
+
+    const DEFAULT_REVIEWS = [
+      {
+        id: 101,
+        author: "सुनील शिंदे",
+        rating: 5,
+        date: "2 दिन पहले",
+        text: "नरेश शाह जी ने मेरी ऑटो रिक्शा का बीमा केवल 15 मिनट में करवा दिया। बहुत ही भरोसेमंद और ईमानदार सर्विस!",
+        status: "approved",
+        replyDraft: "सुनील जी, आपके इस स्नेहपूर्ण रिव्यू के लिए बहुत-बहुत धन्यवाद! आपके ऑटो रिक्शा की सुरक्षा और सेवा में सदैव तत्पर - नरेश शाह इन्शुरन्स (+91 9930875279).",
+        isComplaint: false
+      },
+      {
+        id: 102,
+        author: "राजेश वर्मा",
+        rating: 1,
+        date: "आज",
+        text: "क्लेम के समय मुझे गैराज से जानकारी मिलने में देरी हुई। मुझे जल्दी अपडेट चाहिए था।",
+        status: "pending_owner",
+        replyDraft: "राजेश जी, हुई असुविधा के लिए हमें गहरा खेद है। कृपया हमें +91 9930875279 पर कॉल करें या पॉलिसी नंबर साझा करें, मैं व्यक्तिगत रूप से बीमा कंपनी और गैराज से बात कर आपका काम प्राथमिकता पर करवाता हूँ। - नरेश शाह।",
+        isComplaint: true
+      },
+      {
+        id: 103,
+        author: "प्रदीप मेहता",
+        rating: 4,
+        date: "3 दिन पहले",
+        text: "मेरी कार का नो क्लेम बोनस (NCB) ट्रांसफर आसानी से हो गया। रेट भी सही मिले।",
+        status: "auto_drafted",
+        replyDraft: "प्रदीप जी, आपका बहुत धन्यवाद! सही NCB और सही सलाह देना ही हमारी प्राथमिकता है। किसी भी सहायता के लिए संपर्क करें - नरेश शाह।",
+        isComplaint: false
+      }
+    ];
+
+    // Insurance AI Knowledge Base (Hindi / Hinglish)
+    const AI_DATA = {
+      auto: {
+        coverage: "🛺 **ऑटो-रिक्शा बीमा कवरेज:**\n• थर्ड पार्टी (TP): किसी तीसरे व्यक्ति को चोट, मृत्यु या संपत्ति नुकसान का कानूनी कवरेज (अनिवार्य)।\n• ओन डैमेज (OD): दुर्घटना, आग, चोरी या प्राकृतिक आपदा से ऑटो को हुए नुकसान का कवरेज।\n• ड्राइवर/मालिक पर्सनल एक्सीडेंट (PA): 15 लाख का एक्सीडेंटल कवर (वैध DL होने पर)।\n*नोट: सटीक प्रीमियम RTO लोकेशन और पिछली क्लेम हिस्ट्री पर निर्भर करता है।*",
+        renewal: "🔄 **ऑटो-रिक्शा रिन्यूअल प्रक्रिया:**\n1. पॉलिसी लैप्स होने से 7 दिन पहले रिन्यूअल करवाएं ताकि पेनल्टी और ब्रेक-इन इंस्पेक्शन से बचा जा सके।\n2. नो क्लेम बोनस (NCB) सुरक्षित रखें यदि पिछले साल कोई क्लेम नहीं लिया।\n3. तुरंत डिजिटल रिन्यूअल के लिए RC और पुरानी पॉलिसी व्हाट्सएप करें।",
+        documents: "📄 **ऑटो-रिक्शा जरूरी कागजात:**\n1. आरसी बुक (RC Copy)\n2. पुरानी बीमा पॉलिसी की कॉपी\n3. मालिक का आधार कार्ड और पैन कार्ड\n4. वैध ड्राइविंग लाइसेंस और परमिट कॉपी",
+        faq: "❓ **सामान्य सवाल:**\nQ: क्या कमर्शियल परमिट वाले ऑटो का क्लेम बिना फिटनेस सर्टिफिकेट मिल सकता है?\nA: नहीं, क्लेम के समय गाड़ी का वैध फिटनेस (FC) और परमिट होना अनिवार्य है।"
+      },
+      commercial: {
+        coverage: "🚛 **कमर्शियल वाहन (टैक्सी, पिकअप, ट्रक):**\n• थर्ड पार्टी लीगल लायबिलिटी कवरेज।\n• वाहन का डैमेज कवरेज (दुर्घटना, पलटना, आग)।\n• पेड ड्राइवर और क्लीनर के लिए IMT 28 / IMT 39 लीगल कवर।",
+        renewal: "🔄 **कमर्शियल रिन्यूअल:**\nपॉलिसी खत्म होने से पहले रिन्यूअल कराएं। कमर्शियल गाड़ियों में पॉलिसी टूटने पर गाड़ी का फिजिकल इंस्पेक्शन अनिवार्य हो जाता है।",
+        documents: "📄 **जरूरी दस्तावेज:**\n1. आरसी बुक (RC)\n2. फिटनेस सर्टिफिकेट (FC)\n3. स्टेट/नेशनल परमिट\n4. पिछली पॉलिसी कॉपी\n5. प्रदूषण सर्टिफिकेट (PUC)",
+        faq: "❓ **सामान्य सवाल:**\nQ: ओवरलोडिंग की स्थिति में क्या क्लेम पास होता है?\nA: बीमा कंपनियां ओवरलोडिंग को पॉलिसी नियमों का उल्लंघन मानकर क्लेम खारिज या कम कर सकती हैं।"
+      },
+      bike: {
+        coverage: "🛵 **दो-पहिया / बाइक बीमा:**\n• कॉम्प्रिहेंसिव पॉलिसी: खुद की बाइक का नुकसान + थर्ड पार्टी कवर।\n• जीरो डेप्रिसिएशन (Zero Dep): फाइबर और मेटल पार्ट्स पर पूरा क्लेम।\n• रोडसाइड असिस्टेंस (RSA): रास्ते में पंक्चर या ब्रेकडाउन में मदद।",
+        renewal: "🔄 **बाइक रिन्यूअल:**\nयदि पॉलिसी 90 दिनों से ज्यादा लैप्स हो जाती है, तो जमा हुआ NCB (डिस्काउंट) समाप्त हो जाता है। इसलिए समय पर रिन्यू कराएं।",
+        documents: "📄 **कागजात:**\n1. बाइक की RC\n2. पिछली पॉलिसी कॉपी (यदि उपलब्ध हो)",
+        faq: "❓ **सामान्य सवाल:**\nQ: क्या पुरानी पॉलिसी की रसीद न होने पर भी बाइक का बीमा हो सकता है?\nA: हाँ, केवल RC कॉपी से नई थर्ड पार्टी या कॉम्प्रिहेंसिव पॉलिसी बनाई जा सकती है।"
+      },
+      car: {
+        coverage: "🚗 **प्राइवेट कार बीमा:**\n• बंपर-टू-बंपर / Zero Dep: नए जैसे पार्ट्स का पूरा मुआवजा।\n• इंजन प्रोटेक्टर: बारिश में पानी भरने या आयल लीक से इंजन डैमेज कवर।\n• रिटर्न टू इनवॉइस (RTI): गाड़ी चोरी होने पर ऑन-रोड बिल की पूरी कीमत।",
+        renewal: "🔄 **कार रिन्यूअल:**\nऑनलाइन 10 मिनट में रिन्यूअल संभव। नो क्लेम बोनस को दूसरी कंपनी में भी आसानी से ट्रांसफर किया जा सकता है।",
+        documents: "📄 **जरूरी कागजात:**\n1. कार RC कॉपी\n2. पिछली साल की पॉलिसी\n3. पता प्रमाण (KYC के लिए)",
+        faq: "❓ **सामान्य सवाल:**\nQ: क्या बिना क्लेम लिए गाड़ी बेचने पर NCB ट्रांसफर हो सकता है?\nA: हाँ, आप अपनी नई कार के लिए 'NCB Reserving Letter' ले सकते हैं।"
+      },
+      health: {
+        coverage: "🏥 **स्वास्थ्य बीमा (Health Insurance / Mediclaim):**\n• अस्पताल में भर्ती का खर्च (कमरा किराया, डॉक्टर फीस, दवाएं)।\n• डे-केयर प्रोसीजर्स (मोतियाबिंद, कीमोथेरेपी, डायलिसिस आदि)।\n• प्री और पोस्ट हॉस्पिटलाइजेशन खर्च (अस्पताल जाने से 60 दिन पहले और 90 दिन बाद तक)।",
+        renewal: "🔄 **हेल्थ रिन्यूअल:**\nलाइफलॉन्ग रिन्यूएबिलिटी का फायदा उठाएं। पॉलिसी समय पर रिन्यू करने से वेटिंग पीरियड का लाभ सुरक्षित रहता है।",
+        documents: "📄 **जरूरी कागजात:**\n1. प्रस्तावक और सदस्यों का आधार कार्ड व पैन कार्ड\n2. पुरानी स्वास्थ्य समस्या की मेडिकल हिस्ट्री / डिस्चार्ज समरी (यदि कोई हो)\n3. पासपोर्ट साइज फोटो",
+        faq: "❓ **सामान्य सवाल:**\nQ: क्या पॉलिसी लेते ही पहले दिन से पुरानी बीमारी कवर होती है?\nA: नहीं, पुरानी बीमारियों (Pre-existing diseases) पर आमतौर पर 2 से 3 साल का वेटिंग पीरियड होता है।"
+      },
+      term: {
+        coverage: "☂️ **टर्म लाइफ इन्शुरन्स (Pure Protection):**\n• परिवार के लिए सुरक्षित जीवन कवर (जैसे 50 लाख से 1 करोड़ तक)।\n• आकस्मिक मृत्यु या गंभीर बीमारी (Critical Illness) राइडर विकल्प।\n• सबसे कम प्रीमियम में सबसे ज्यादा सुरक्षा।",
+        renewal: "🔄 **टर्म रिन्यूअल:**\nहर साल नियत तारीख पर प्रीमियम भरें ताकि पॉलिसी लैप्स न हो और परिवार सुरक्षित रहे।",
+        documents: "📄 **कागजात:**\n1. आय प्रमाण (3 महीने की सैलरी स्लिप या 2 साल का ITR)\n2. पैन कार्ड व आधार कार्ड\n3. बैंक स्टेटमेंट (6 महीने)",
+        faq: "❓ **सामान्य सवाल:**\nQ: क्या टर्म प्लान में मेडिकल टेस्ट अनिवार्य है?\nA: उम्र और कवर राशि के आधार पर कंपनी फ्री मेडिकल चेकअप की व्यवस्था करती है।"
+      }
+    };
+
+    // Social Media Ad Templates
+    const AD_TEMPLATES = {
+      auto: `🛺 ऑटो रिक्शा भाइयों के लिए खास सूचना! 🛺\n\nक्या आपके ऑटो का बीमा खत्म होने वाला है?\nचालान और जुर्माने से बचें! तुरंत रिन्यू करवाएं:\n\n✅ तुरंत ऑनलाइन पॉलिसी जारी\n✅ थर्ड पार्टी और फुल बीमा की सुविधा\n✅ क्लेम सहायता में पूरा सहयोग\n\nकागजात व्हाट्सएप करें और 15 मिनट में पॉलिसी पाएं!\n📞 संपर्क करें: नरेश शाह\n📲 सीधे व्हाट्सएप करें: https://wa.me/919930875279\n(विश्वसनीय बीमा सलाहकार)`,
+      commercial: `🚛 कमर्शियल गाड़ी, टेम्पो और ट्रक मालिकों के लिए! 🚛\n\nअपनी गाड़ी का बीमा समय पर रिन्यू करवाएं और बिना किसी झंझट अपनी गाड़ी रोड पर चलाएं।\n\n🔹 ऑल इंडिया परमिट गाड़ियां\n🔹 थर्ड पार्टी और कॉम्प्रिहेंसिव कवर\n🔹 नो क्लेम बोनस (NCB) सुरक्षित\n\n📞 संपर्क: नरेश शाह - +91 9930875279\n📲 व्हाट्सएप लिंक: https://wa.me/919930875279\nईमानदार सेवा, सही सलाह!`,
+      bike: `🛵 बाइक और कार का बीमा रिन्यू कराएं मिनटों में! 🚗\n\nपॉलिसी खत्म हो गई है? टेंशन न लें!\nबिना किसी एजेंट कमीशन की झंझट, सीधे सही बीमा पाएं:\n\n✨ जीरो डेप्रिसिएशन (Zero Dep)\n✨ 24x7 रोडसाइड असिस्टेंस\n✨ पेपरलेस और तुरंत पॉलिसी कॉपी\n\nकागजात भेजें: https://wa.me/919930875279\nसलाहकार: नरेश शाह (+91 9930875279)`,
+      health: `🏥 बीमारी बताकर नहीं आती, लेकिन सुरक्षा पहले से की जा सकती है! 🏥\n\nअपने और अपने परिवार के लिए सही हेल्थ बीमा (Mediclaim) आज ही चुनें:\n\n✔️ कैशलेस हॉस्पिटलाइजेशन\n✔️ 5 लाख से 50 लाख तक का कवर\n✔️ टैक्स बचत (Section 80D)\n\nसही योजना चुनने के लिए आज ही मुफ्त परामर्श लें:\n📞 नरेश शाह: +91 9930875279\n📲 व्हाट्सएप: https://wa.me/919930875279`,
+      term: `☂️ आपके बाद आपके परिवार का क्या? ☂️\n\n1 करोड़ का टर्म इन्शुरन्स आपकी और आपके परिवार की सबसे बड़ी जिम्मेदारी है।\n\n💡 बहुत ही कम प्रीमियम\n💡 बच्चों की पढ़ाई और परिवार के भविष्य की पक्की गारंटी\n\nआज ही अपने परिवार की सुरक्षा सुनिश्चित करें।\nनरेश शाह (बीमा सलाहकार)\n📲 व्हाट्सएप चैट: https://wa.me/919930875279`,
+      renewal: `⏱️ क्या आपकी पॉलिसी की तारीख निकल गई है? ⏱️\n\nगाड़ी का चालान कटने से पहले अभी अपनी पॉलिसी रिन्यू करवाएं।\nबस RC की फोटो व्हाट्सएप करें और अपनी पॉलिसी प्राप्त करें।\n\n📲 नरेश शाह: https://wa.me/919930875279\nकॉल/व्हाट्सएप: +91 9930875279`
+    };
+
+    // --- 2. LOCAL STORAGE MANAGERS ---
+    function getStoredLeads() {
+      const data = localStorage.getItem('ns_insurance_leads');
+      return data ? JSON.parse(data) : DEFAULT_LEADS;
+    }
+    function saveStoredLeads(leads) {
+      localStorage.setItem('ns_insurance_leads', JSON.stringify(leads));
+      updateMetrics();
+    }
+
+    function getStoredReviews() {
+      const data = localStorage.getItem('ns_insurance_reviews');
+      return data ? JSON.parse(data) : DEFAULT_REVIEWS;
+    }
+    function saveStoredReviews(revs) {
+      localStorage.setItem('ns_insurance_reviews', JSON.stringify(revs));
+      updateMetrics();
+    }
+
+    // --- 3. NAVIGATION TAB SWITCHER ---
+    let currentTab = 'home';
+    function switchTab(tabId) {
+      currentTab = tabId;
+      const views = ['home', 'ai', 'customers', 'reviews', 'ads', 'settings'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.toggle('hidden', v !== tabId);
+      });
+
+      // Update Nav active style
+      const navButtons = ['home', 'ai', 'customers', 'reviews', 'ads'];
+      navButtons.forEach(btn => {
+        const el = document.getElementById(`nav-${btn}`);
+        if (el) {
+          if (btn === tabId) {
+            el.className = "nav-btn text-blue-600 font-bold flex flex-col items-center";
+          } else {
+            el.className = "nav-btn text-slate-500 font-medium flex flex-col items-center";
+          }
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tabId === 'customers') renderLeadsList();
+      if (tabId === 'reviews') renderReviewsList();
+      if (tabId === 'ai') renderAiTopics();
+      if (tabId === 'ads') renderAdTemplate('auto');
+    }
+
+    function updateMetrics() {
+      const leads = getStoredLeads();
+      const reviews = getStoredReviews();
+      document.getElementById('stat-leads').innerText = leads.length;
+      document.getElementById('stat-followups').innerText = leads.filter(l => l.status === 'followup').length;
+      document.getElementById('stat-reviews').innerText = reviews.filter(r => r.status.includes('pending') || r.status.includes('auto')).length;
+    }
+
+    // --- 4. INSURANCE AI MODULE ---
+    let activeAiTopic = 'coverage';
+    function setAiTopic(topic) {
+      activeAiTopic = topic;
+      document.querySelectorAll('.ai-tab-btn').forEach(btn => {
+        btn.classList.replace('bg-blue-600', 'bg-slate-100');
+        btn.classList.replace('text-white', 'text-slate-700');
+      });
+      const activeBtn = document.getElementById(`tab-${topic}`);
+      if (activeBtn) {
+        activeBtn.classList.replace('bg-slate-100', 'bg-blue-600');
+        activeBtn.classList.replace('text-slate-700', 'text-white');
+      }
+      renderAiTopics();
+    }
+
+    function renderAiTopics() {
+      const cat = document.getElementById('ai-category').value;
+      const text = AI_DATA[cat] ? AI_DATA[cat][activeAiTopic] : "जानकारी उपलब्ध नहीं है।";
+      document.getElementById('ai-content-box').innerText = text;
+    }
+
+    function copyAiText() {
+      const text = document.getElementById('ai-content-box').innerText;
+      navigator.clipboard.writeText(text);
+      alert("✅ बीमा जानकारी कॉपी हो गई!");
+    }
+
+    function generateAiCustomerReply() {
+      const name = document.getElementById('ai-cust-name').value.trim() || "सर";
+      const qType = document.getElementById('ai-query-type').value;
+      let reply = "";
+
+      if (qType === 'expired') {
+        reply = `नमस्ते ${name} जी, नरेश शाह बात कर रहा हूँ। चिंता की कोई बात नहीं है, आपकी पॉलिसी तुरंत रिन्यू हो जाएगी। कृपया अपनी गाड़ी की RC (Registration Certificate) और पिछली पॉलिसी की फोटो मुझे इस नंबर पर भेज दीजिए। मैं तुरंत बेस्ट कोटेशन निकालकर आपको भेजता हूँ।`;
+      } else if (qType === 'auto_rate') {
+        reply = `नमस्ते ${name} जी! ऑटो रिक्शा के थर्ड पार्टी बीमा के लिए केवल RC कॉपी और आपकी पिछली पॉलिसी की जरूरत है। सही प्रीमियम गाड़ी की उम्र और RTO के नियमों के अनुसार निर्धारित होता है। आप कागजात भेजें, मैं तुरंत चेक करके बताता हूँ। - नरेश शाह (+91 9930875279)`;
+      } else if (qType === 'claim_process') {
+        reply = `नमस्ते ${name} जी, दुर्घटना की सूचना के लिए धन्यवाद। कृपया घबराएं नहीं। सबसे पहले गाड़ी की फोटो खींच लें और गाड़ी को तुरंत उसी स्थिति में रखें। मुझे RC, ड्राइविंग लाइसेंस और पुरानी पॉलिसी की कॉपी भेजें। मैं कंपनी में क्लेम इंटिमेशन दर्ज कराने में आपकी पूरी मदद करूँगा। - नरेश शाह।`;
+      } else if (qType === 'health_waiting') {
+        reply = `नमस्ते ${name} जी, स्वास्थ्य बीमा में पहले से मौजूद बीमारियों पर आमतौर पर 24 से 36 महीने का वेटिंग पीरियड रहता है। हालांकि आकस्मिक बीमारी और दुर्घटना पहले दिन से कवर होती हैं। आपके लिए सबसे अनुकूल प्लान चुनने के लिए कृपया कॉल करें। - नरेश शाह (+91 9930875279)`;
+      } else {
+        reply = `नमस्ते ${name} जी, टर्म बीमा के लिए बेसिक मेडिकल चेकअप कंपनी अपने खर्चे पर करवाती है। इससे आगे चलकर क्लेम में परिवार को कोई परेशानी नहीं आती। यदि आप चाहें तो आज ही प्रोसेस शुरू कर सकते हैं। - नरेश शाह।`;
+      }
+
+      document.getElementById('ai-reply-draft').value = reply;
+      document.getElementById('ai-reply-output-container').classList.remove('hidden');
+    }
+
+    function copyGeneratedReply() {
+      const val = document.getElementById('ai-reply-draft').value;
+      navigator.clipboard.writeText(val);
+      alert("✅ ड्राफ्ट कॉपी हो गया!");
+    }
+
+    function shareGeneratedReplyToCustomer() {
+      const val = encodeURIComponent(document.getElementById('ai-reply-draft').value);
+      window.open(`https://wa.me/919930875279?text=${val}`, '_blank');
+    }
+
+    // --- 5. WHATSAPP CUSTOMER MANAGEMENT (CRM) ---
+    let currentSelectedLeadForMsg = null;
+
+    function renderLeadsList() {
+      const list = getStoredLeads();
+      const container = document.getElementById('leads-container');
+      const search = (document.getElementById('lead-search').value || '').toLowerCase();
+      const filter = document.getElementById('lead-filter-status').value;
+
+      const filtered = list.filter(item => {
+        const matchesSearch = item.name.toLowerCase().includes(search) || item.phone.includes(search);
+        const matchesFilter = filter === 'all' || item.status === filter;
+        return matchesSearch && matchesFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="bg-white p-6 rounded-xl text-center text-slate-400 text-xs">कोई ग्राहक रिकॉर्ड नहीं मिला।</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(lead => {
+        let badgeColor = "bg-blue-100 text-blue-800";
+        let statusName = "नई लीड";
+        if (lead.status === 'followup') { badgeColor = "bg-amber-100 text-amber-800"; statusName = "फॉलो-अप"; }
+        if (lead.status === 'closed') { badgeColor = "bg-emerald-100 text-emerald-800"; statusName = "पॉलिसी जारी"; }
+
+        return `
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs space-y-2">
+            <div class="flex items-start justify-between">
+              <div>
+                <h4 class="font-bold text-xs text-slate-900">${lead.name}</h4>
+                <p class="text-[11px] text-slate-500 font-medium">📞 +91 ${lead.phone} • ${lead.vehicle || 'N/A'}</p>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold ${badgeColor}">${statusName}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] text-slate-600 bg-slate-50 px-2 py-1.5 rounded-md">
+              <span>प्रकार: <strong class="text-slate-800">${lead.type}</strong></span>
+              <span>तारीख: <strong>${lead.date}</strong></span>
+            </div>
+
+            <div class="flex gap-2 pt-1">
+              <button onclick="openMsgModalForLead(${lead.id})" class="flex-1 py-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-semibold rounded-lg flex items-center justify-center gap-1">
+                💬 संदेश ड्राफ्ट व भेजें
+              </button>
+              <button onclick="deleteLead(${lead.id})" class="px-2.5 py-1.5 bg-rose-50 text-rose-600 rounded-lg text-xs font-medium">
+                🗑️
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterLeads() {
+      renderLeadsList();
+    }
+
+    function openLeadModal() {
+      document.getElementById('modal-lead').classList.remove('hidden');
+    }
+    function closeLeadModal() {
+      document.getElementById('modal-lead').classList.add('hidden');
+      document.getElementById('form-name').value = '';
+      document.getElementById('form-phone').value = '';
+      document.getElementById('form-vehicle').value = '';
+    }
+
+    function saveLead() {
+      const name = document.getElementById('form-name').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+      const type = document.getElementById('form-type').value;
+      const status = document.getElementById('form-status').value;
+      const vehicle = document.getElementById('form-vehicle').value.trim();
+      const date = document.getElementById('form-date').value || new Date().toISOString().split('T')[0];
+
+      if (!name || !phone) {
+        alert("कृपया ग्राहक का नाम और मोबाइल नंबर भरें!");
+        return;
+      }
+
+      const leads = getStoredLeads();
+      leads.unshift({
+        id: Date.now(),
+        name,
+        phone,
+        type,
+        status,
+        vehicle,
+        date
+      });
+
+      saveStoredLeads(leads);
+      closeLeadModal();
+      renderLeadsList();
+    }
+
+    function deleteLead(id) {
+      if (!confirm("क्या आप इस ग्राहक को हटाना चाहते हैं?")) return;
+      let leads = getStoredLeads();
+      leads = leads.filter(l => l.id !== id);
+      saveStoredLeads(leads);
+      renderLeadsList();
+    }
+
+    // Lead WhatsApp Messaging
+    function openMsgModalForLead(id) {
+      const leads = getStoredLeads();
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+
+      currentSelectedLeadForMsg = lead;
+      document.getElementById('msg-cust-name').innerText = lead.name;
+      document.getElementById('msg-cust-phone').innerText = lead.phone;
+      document.getElementById('msg-owner-approval').checked = false;
+
+      applyLeadMsgTemplate();
+      document.getElementById('modal-msg').classList.remove('hidden');
+    }
+
+    function closeMsgModal() {
+      document.getElementById('modal-msg').classList.add('hidden');
+    }
+
+    function applyLeadMsgTemplate() {
+      if (!currentSelectedLeadForMsg) return;
+      const lead = currentSelectedLeadForMsg;
+      const template = document.getElementById('msg-template-select').value;
+      let msg = "";
+
+      if (template === 'renewal_reminder') {
+        msg = `नमस्ते ${lead.name} जी! आपकी ${lead.type} (${lead.vehicle}) की बीमा पॉलिसी जल्द समाप्त हो रही है। समय पर रिन्यू कराने से आपकी गाड़ी पर जुर्माना नहीं लगेगा और नो क्लेम डिस्काउंट सुरक्षित रहेगा। तुरंत रिन्यूअल के लिए हमें संपर्क करें - नरेश शाह (+91 9930875279)।`;
+      } else if (template === 'doc_request') {
+        msg = `नमस्ते ${lead.name} जी, आपकी ${lead.type} के बीमा कोटेशन के लिए कृपया अपनी RC कॉपी और पुरानी पॉलिसी की फोटो यहाँ व्हाट्सएप करें। मैं तुरंत बेस्ट रेट निकाल देता हूँ। - नरेश शाह (+91 9930875279)।`;
+      } else if (template === 'quote_ready') {
+        msg = `नमस्ते ${lead.name} जी, आपकी पॉलिसी का कोटेशन तैयार है। सभी मुख्य बीमा कंपनियों के डिस्काउंट की तुलना कर ली गई है। क्या हम इस पर बात कर सकते हैं? - नरेश शाह (+91 9930875279)।`;
+      } else {
+        msg = `नमस्ते ${lead.name} जी, नरेश शाह इन्शुरन्स पर भरोसा करने के लिए धन्यवाद! आपकी ${lead.type} की पॉलिसी जारी हो चुकी है। किसी भी क्लेम या सहायता के लिए यह नंबर सुरक्षित रखें: +91 9930875279।`;
+      }
+
+      document.getElementById('msg-text').value = msg;
+    }
+
+    function sendApprovedWhatsApp() {
+      const approved = document.getElementById('msg-owner-approval').checked;
+      if (!approved) {
+        alert("⚠️ संदेश भेजने से पहले नरेश शाह की स्वीकृति चेकबॉक्स पर टिक लगाना अनिवार्य है!");
+        return;
+      }
+
+      const msg = encodeURIComponent(document.getElementById('msg-text').value);
+      const phone = currentSelectedLeadForMsg.phone;
+      // Opens official WhatsApp chat with customer prefilled
+      const waUrl = `https://wa.me/91${phone}?text=${msg}`;
+      window.open(waUrl, '_blank');
+      closeMsgModal();
+    }
+
+    // --- 6. GOOGLE BUSINESS PROFILE REVIEWS ---
+    function renderReviewsList() {
+      const reviews = getStoredReviews();
+      const container = document.getElementById('reviews-container');
+
+      container.innerHTML = reviews.map(rev => {
+        const isComplaint = rev.isComplaint || rev.rating <= 2;
+        let badge = isComplaint 
+          ? `<span class="px-2 py-0.5 rounded text-[10px] bg-rose-100 text-rose-800 font-bold border border-rose-200">⚠️ मालिक की स्वीकृति अनिवार्य (शिकायत)</span>`
+          : `<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-800 font-medium">सामान्य / सकारात्मक</span>`;
+
+        let statusText = rev.status === 'published' ? '<span class="text-emerald-600 font-bold">✓ स्वीकृत व पोस्टेड (डेमो)</span>' : '<span class="text-amber-600 font-semibold">समीक्षा बाकी</span>';
+
+        return `
+          <div class="bg-white p-3.5 rounded-xl border ${isComplaint ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'} shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs text-slate-800">${rev.author}</span>
+                <span class="text-[11px] text-amber-500 font-bold ml-1">${'★'.repeat(rev.rating)}${'☆'.repeat(5 - rev.rating)}</span>
+              </div>
+              <span class="text-[10px] text-slate-400">${rev.date}</span>
+            </div>
+
+            <p class="text-xs text-slate-700 italic">"${rev.text}"</p>
+            <div class="flex items-center justify-between">${badge} <span class="text-[11px]">${statusText}</span></div>
+
+            <div class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+              <label class="block text-[10px] font-bold text-slate-600 mb-1">प्रस्तावित उत्तर ड्राफ्ट (Edit/Review):</label>
+              <textarea id="reply-text-${rev.id}" rows="2" class="w-full text-xs p-1.5 bg-white border border-slate-300 rounded font-sans">${rev.replyDraft}</textarea>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="approveReviewReply(${rev.id})" class="flex-1 py-1.5 ${isComplaint ? 'bg-rose-600 hover:bg-rose-700' : 'bg-blue-600 hover:bg-blue-700'} text-white text-xs font-semibold rounded-lg shadow-xs">
+                ${isComplaint ? 'शिकायत उत्तर स्वीकृत करें' : 'उत्तर स्वीकृत करें'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function approveReviewReply(id) {
+      let reviews = getStoredReviews();
+      const r = reviews.find(item => item.id === id);
+      if (!r) return;
+
+      const txt = document.getElementById(`reply-text-${id}`).value;
+      r.replyDraft = txt;
+      r.status = 'published';
+      saveStoredReviews(reviews);
+      renderReviewsList();
+      alert("✅ उत्तर स्वीकृत किया गया! (सूचना: असली Google Business Profile पर पोस्ट करने हेतु Google Cloud Console ऑथराइजेशन आवश्यक है।)");
+    }
+
+    // --- 7. SOCIAL POSTS & ADVERTISING ---
+    function renderAdTemplate(cat) {
+      document.getElementById('ad-content-box').value = AD_TEMPLATES[cat] || "";
+      document.getElementById('ad-approval-check').checked = false;
+    }
+
+    function copyAdContent() {
+      const content = document.getElementById('ad-content-box').value;
+      navigator.clipboard.writeText(content);
+      alert("✅ विज्ञापन टेक्स्ट कॉपी हो गया! अब आप इसे फेसबुक या कहीं भी पेस्ट कर सकते हैं।");
+    }
+
+    function shareAdToWhatsApp() {
+      const isApproved = document.getElementById('ad-approval-check').checked;
+      if (!isApproved) {
+        alert("⚠️ पोस्ट साझा करने से पहले पुष्टि चेकबॉक्स पर टिक लगाएं!");
+        return;
+      }
+      const text = encodeURIComponent(document.getElementById('ad-content-box').value);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    // --- 8. SETTINGS, BACKUP & RESET ---
+    function exportData() {
+      const data = {
+        leads: getStoredLeads(),
+        reviews: getStoredReviews(),
+        exportedAt: new Date().toISOString()
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Naresh_Shah_Insurance_Backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+    }
+
+    function resetDefaultData() {
+      if (!confirm("क्या आप सारा डेटा रीसेट करके डिफ़ॉल्ट डेमो डेटा वापस लाना चाहते हैं?")) return;
+      localStorage.removeItem('ns_insurance_leads');
+      localStorage.removeItem('ns_insurance_reviews');
+      updateMetrics();
+      alert("डिफ़ॉल्ट डेटा लोड हो गया!");
+      switchTab('home');
+    }
+
+    // Initial boot
+    document.addEventListener('DOMContentLoaded', () => {
+      updateMetrics();
+      renderAiTopics();
+    });
+  </script>
+</body>
+</html>
